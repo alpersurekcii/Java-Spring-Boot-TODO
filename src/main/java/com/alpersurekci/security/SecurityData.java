@@ -15,8 +15,8 @@ public class SecurityData extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login","/","/index","/save","/delete/do/{id}","/update/do/{id}", "/api/**",
-                        "/done/{id}","/api/v1","/done/delete/all","/swagger-ui/**")
+                .antMatchers("/login", "/", "/index", "/save", "/delete/do/{id}", "/update/do/{id}", "/api/**",
+                        "/done/{id}", "/api/v1", "/done/delete/all", "/swagger-ui/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -29,13 +29,13 @@ public class SecurityData extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/h2-console/**","/api/v1/**");
+                .antMatchers("/h2-console/**", "/api/v1/**");
 
     }
 
     @Autowired
     public void myDataUser(AuthenticationManagerBuilder authentication) throws Exception {
-        PasswordEncoder encoder= PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         authentication
                 .inMemoryAuthentication()
                 .withUser("alpersurekci")

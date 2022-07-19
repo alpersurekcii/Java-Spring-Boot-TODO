@@ -1,7 +1,3 @@
-### Amaç
-ToDo list ve todo list rest api yapmak.
-
-
 
 
 ### Gereksinimler

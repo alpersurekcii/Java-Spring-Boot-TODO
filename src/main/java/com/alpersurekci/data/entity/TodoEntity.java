@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "todo_table")
-public class TodoEntity extends BaseEntity{
+public class TodoEntity extends BaseEntity {
 
     @Column(name = "doName")
     private String doName;

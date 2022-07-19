@@ -18,9 +18,9 @@ public interface IToDoRest {
 
     ResponseEntity<TodoDto> updateToDo(Long id, TodoDto todoDto);
 
-    ResponseEntity<Map<String, Boolean >> deleteAllToDo();
+    ResponseEntity<Map<String, Boolean>> deleteAllToDo();
 
     ResponseEntity<Map<String, Boolean>> selectDone(Long id);
 
     ResponseEntity<Map<String, Boolean>> deleteAllDoneToDo();
- }
+}

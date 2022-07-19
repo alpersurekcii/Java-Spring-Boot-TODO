@@ -21,8 +21,8 @@ public class ToDoRestImpl implements IToDoRest {
     @Autowired
     IToDoServices services;
 
-    @GetMapping({"/","/index"})
-    public String getRoot(){
+    @GetMapping({"/", "/index"})
+    public String getRoot() {
         return "index";
 
     }
@@ -45,14 +45,14 @@ public class ToDoRestImpl implements IToDoRest {
     @DeleteMapping("/todo/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteToDo(@PathVariable(name = "id", required = false) Long id) {
         services.deleteToDo(id);
-        Map<String, Boolean> response= new HashMap<>();
+        Map<String, Boolean> response = new HashMap<>();
         response.put("Deleted ", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 
     @Override
     @PutMapping("/todo/{id}")
-    public ResponseEntity<TodoDto> updateToDo(@PathVariable(name = "id") Long id,@RequestBody TodoDto todoDto) {
+    public ResponseEntity<TodoDto> updateToDo(@PathVariable(name = "id") Long id, @RequestBody TodoDto todoDto) {
         services.updateToDo(id, todoDto);
         return ResponseEntity.ok(todoDto);
     }
@@ -70,10 +70,10 @@ public class ToDoRestImpl implements IToDoRest {
     @Override
     @PutMapping("/todo/select/done/{id}")
     public ResponseEntity<Map<String, Boolean>> selectDone(@PathVariable(name = "id") Long id) {
-         services.selectDone(id);
-         Map<String, Boolean> response = new HashMap<>();
-         response.put("Task is selected", Boolean.TRUE);
-         return ResponseEntity.ok(response);
+        services.selectDone(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Task is selected", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
     @Override

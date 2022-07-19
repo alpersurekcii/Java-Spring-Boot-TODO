@@ -11,7 +11,7 @@ public interface IToDoServices {
 
     public TodoDto entityToDto(TodoEntity todoEntity);
 
-    public TodoEntity  dtoToEntity(TodoDto todoDto);
+    public TodoEntity dtoToEntity(TodoDto todoDto);
 
     public List<TodoEntity> findAllToDo();
 

@@ -17,30 +17,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 
-
 @Controller
 @Log4j2
-public class TodoController  {
+public class TodoController {
 
     @Autowired
     IToDoServices service;
+
     @Autowired
     ITodoRespository repository;
 
     @GetMapping("/")
-    public String getTodoAdd(Model model){
+    public String getTodoAdd(Model model) {
 
         model.addAttribute("todo_key", new TodoDto());
 
-        model.addAttribute("todo_list",  service.findAllToDo());
+        model.addAttribute("todo_list", service.findAllToDo());
 
         return "index";
     }
 
     @PostMapping("/save")
-    public String postTodoAdd(@Valid @ModelAttribute("todo_key")TodoDto todoDto, BindingResult bindingResult){
+    public String postTodoAdd(@Valid @ModelAttribute("todo_key") TodoDto todoDto, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             log.info("postdoAdd isleminde hata");
             return "error";
         }
@@ -51,34 +51,35 @@ public class TodoController  {
     }
 
     @GetMapping("/delete/do/{id}")
-    public String deleteToDo(@PathVariable(name = "id")Long id){
+    public String deleteToDo(@PathVariable(name = "id") Long id) {
 
         service.deleteToDo(id);
         return "redirect:/";
     }
 
     @PostMapping("/update/do/{id}")
-    public String updateToDo(@PathVariable(name = "id")Long id, TodoDto todoDto){
+    public String updateToDo(@PathVariable(name = "id") Long id, TodoDto todoDto) {
 
-        service.updateToDo(id,todoDto);
+        service.updateToDo(id, todoDto);
         return "redirect:/";
 
     }
 
     @GetMapping("delete/do/all")
-    public String deleteAllToDo(){
+    public String deleteAllToDo() {
         service.deleteAllToDo();
-    return "redirect:/";
+        return "redirect:/";
 
     }
+
     @GetMapping("/done/{id}")
-    public String done(@PathVariable(name = "id")Long id){
+    public String done(@PathVariable(name = "id") Long id) {
         service.selectDone(id);
-       return "redirect:/";
+        return "redirect:/";
     }
 
     @GetMapping("/done/delete/all")
-    public String doneDeleteAll(){
+    public String doneDeleteAll() {
         service.deleteAllDoneToDo();
         return "redirect:/";
     }

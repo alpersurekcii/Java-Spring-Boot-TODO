@@ -27,7 +27,7 @@ public class ToDoServiceImpl implements IToDoServices {
 
     @Override
     public TodoDto entityToDto(TodoEntity todoEntity) {
-        TodoDto todoDto = modelMapper.map(todoEntity,TodoDto.class);
+        TodoDto todoDto = modelMapper.map(todoEntity, TodoDto.class);
         return todoDto;
     }
 
@@ -70,13 +70,13 @@ public class ToDoServiceImpl implements IToDoServices {
     @Override
     public ResponseEntity<TodoDto> updateToDo(Long id, TodoDto todoDto) {
         Optional<TodoEntity> todoEntity = repository.findById(id);
-        if(todoEntity.isPresent()){
+        if (todoEntity.isPresent()) {
 
             todoEntity.get().setDoName(todoDto.getDoName());
             repository.save(todoEntity.get());
             log.info("guncellendi");
 
-        }else{
+        } else {
             log.info("updateToDo da hata");
         }
         return ResponseEntity.ok(todoDto);
@@ -91,10 +91,10 @@ public class ToDoServiceImpl implements IToDoServices {
     @Override
     public void selectDone(Long id) {
         Optional<TodoEntity> entity = repository.findById(id);
-        if(entity.isPresent()) {
+        if (entity.isPresent()) {
             entity.get().setCompleted(!entity.get().isCompleted());
             repository.save(entity.get());
-        }else {
+        } else {
             log.info("selectDone Method error");
         }
     }
@@ -102,9 +102,9 @@ public class ToDoServiceImpl implements IToDoServices {
     @Override
     public void deleteAllDoneToDo() {
 
-       List<TodoEntity> allEntities = repository.findAllByCompletedEquals(true);
+        List<TodoEntity> allEntities = repository.findAllByCompletedEquals(true);
 
-        for(TodoEntity entity : allEntities ){
+        for (TodoEntity entity : allEntities) {
             repository.deleteById(entity.getId());
         }
 

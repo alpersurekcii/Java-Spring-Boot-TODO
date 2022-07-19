@@ -1,5 +1,5 @@
 <!doctype html>
-<html  th:lang="${#locale.language}"  xmlns:th="http://www.thymeleaf.org" >
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
     <meta charset="utf-8">
@@ -15,9 +15,10 @@
 <p class="display-5 mt-5 mb-5 text-uppercase">login</p>
 
 <form th:action="@{/login}" method="post" th:name="login">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <input type="text" class="form-control mb-4" th:name="username" id="name"     required placeholder="Username" autofocus/>
-    <input type="password" class="form-control mb-4"  th:name="password" id="surname"  required placeholder="password"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="text" class="form-control mb-4" th:name="username" id="name" required placeholder="Username"
+           autofocus/>
+    <input type="password" class="form-control mb-4" th:name="password" id="surname" required placeholder="password"/>
     <button class="btn btn-primary">Sign In</button>
 </form>
 

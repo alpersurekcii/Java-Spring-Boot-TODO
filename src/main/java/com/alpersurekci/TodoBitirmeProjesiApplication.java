@@ -11,7 +11,7 @@ public class TodoBitirmeProjesiApplication {
         SpringApplication.run(TodoBitirmeProjesiApplication.class, args);
 
 
-        System.setProperty("spring.devtools.restart.enabled","false");
+        System.setProperty("spring.devtools.restart.enabled", "false");
 
         System.setProperty("java.awt.headless", "false");
     }

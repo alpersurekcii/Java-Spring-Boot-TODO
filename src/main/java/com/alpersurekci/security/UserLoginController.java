@@ -27,14 +27,14 @@ public class UserLoginController {
 
 
     @GetMapping("/logout")
-    public String getLogout(HttpServletRequest request, HttpServletResponse response, Model model){
-        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+    public String getLogout(HttpServletRequest request, HttpServletResponse response, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication!=null){
-            new SecurityContextLogoutHandler().logout(request,response,authentication);
-            model.addAttribute("logout_key","Çıkış yapıldı");
-        }else
-            model.addAttribute("logout_key","Çıkış Başarısız");
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+            model.addAttribute("logout_key", "Çıkış yapıldı");
+        } else
+            model.addAttribute("logout_key", "Çıkış Başarısız");
 
         return "logout";
     }

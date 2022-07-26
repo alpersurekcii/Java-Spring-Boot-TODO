@@ -1,8 +1,10 @@
 package com.alpersurekci.ui.mvc.rest.impl;
 
 import com.alpersurekci.business.dto.TodoDto;
+import com.alpersurekci.business.dto.UserDto;
 import com.alpersurekci.business.services.IToDoServices;
 import com.alpersurekci.data.entity.TodoEntity;
+import com.alpersurekci.exception.UserAlreadyExistException;
 import com.alpersurekci.ui.mvc.rest.IToDoRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class ToDoRestImpl implements IToDoRest {
 
     }
 
+    //rest api de save işlemi
     @Override
     @PostMapping("/todo")
     public TodoDto saveToDo(@RequestBody TodoDto todoDto) {
@@ -34,6 +37,7 @@ public class ToDoRestImpl implements IToDoRest {
         return todoDto;
     }
 
+    //rest api de listeleme işlemi
     @Override
     @GetMapping("/todo")
     public List<TodoEntity> findAllToDo() {
@@ -41,6 +45,7 @@ public class ToDoRestImpl implements IToDoRest {
         return services.findAllToDo();
     }
 
+    //rest api de delete işlemi
     @Override
     @DeleteMapping("/todo/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteToDo(@PathVariable(name = "id", required = false) Long id) {
@@ -50,6 +55,7 @@ public class ToDoRestImpl implements IToDoRest {
         return ResponseEntity.ok(response);
     }
 
+    //rest api de update işlemi
     @Override
     @PutMapping("/todo/{id}")
     public ResponseEntity<TodoDto> updateToDo(@PathVariable(name = "id") Long id, @RequestBody TodoDto todoDto) {
@@ -57,6 +63,7 @@ public class ToDoRestImpl implements IToDoRest {
         return ResponseEntity.ok(todoDto);
     }
 
+    //rest api de bütün taskları delete işlemi
     @Override
     @DeleteMapping("/todo/delete/all")
     public ResponseEntity<Map<String, Boolean>> deleteAllToDo() {
@@ -67,6 +74,7 @@ public class ToDoRestImpl implements IToDoRest {
 
     }
 
+    //rest api de done task işlemi
     @Override
     @PutMapping("/todo/select/done/{id}")
     public ResponseEntity<Map<String, Boolean>> selectDone(@PathVariable(name = "id") Long id) {
@@ -76,12 +84,22 @@ public class ToDoRestImpl implements IToDoRest {
         return ResponseEntity.ok(response);
     }
 
+    //rest api de bütün done taskları silme işlemi
     @Override
     @DeleteMapping("/todo/delete/alldone")
     public ResponseEntity<Map<String, Boolean>> deleteAllDoneToDo() {
         services.deleteAllDoneToDo();
         Map<String, Boolean> response = new HashMap<>();
         response.put("Delete all done task", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    @PostMapping("/todo/user/register")
+    public ResponseEntity<Map<String, Boolean>> registerUser(UserDto userDto){
+        services.userSave(userDto);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Registered successfully", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 

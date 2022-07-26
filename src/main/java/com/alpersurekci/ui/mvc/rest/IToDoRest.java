@@ -2,6 +2,7 @@ package com.alpersurekci.ui.mvc.rest;
 
 
 import com.alpersurekci.business.dto.TodoDto;
+import com.alpersurekci.business.dto.UserDto;
 import com.alpersurekci.data.entity.TodoEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -23,4 +24,6 @@ public interface IToDoRest {
     ResponseEntity<Map<String, Boolean>> selectDone(Long id);
 
     ResponseEntity<Map<String, Boolean>> deleteAllDoneToDo();
+
+    ResponseEntity<Map<String, Boolean>> registerUser(UserDto userDto);
 }

@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ITodoRespository extends JpaRepository<TodoEntity, Long> {
+public interface ITodoRepository extends JpaRepository<TodoEntity, Long> {
 
+    //bütün completed değerlerini isteğe göre bulmak için oluşturuldu
     List<TodoEntity> findAllByCompletedEquals(boolean bool);
 
 }

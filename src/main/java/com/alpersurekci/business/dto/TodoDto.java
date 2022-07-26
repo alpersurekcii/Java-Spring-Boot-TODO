@@ -19,6 +19,7 @@ public class TodoDto {
     @NotEmpty(message = "To do cannot be empty!!")
     private String doName;
 
+    //task completed kontrolü için
     private boolean completed;
 
 }

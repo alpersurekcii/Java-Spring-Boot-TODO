@@ -1,9 +1,9 @@
 package com.alpersurekci.ui.mvc.controller;
 
 import com.alpersurekci.business.services.IToDoServices;
-import com.alpersurekci.data.entity.TodoEntity;
-import com.alpersurekci.data.repository.ITodoRespository;
+import com.alpersurekci.data.repository.ITodoRepository;
 import com.alpersurekci.business.dto.TodoDto;
+import com.alpersurekci.data.repository.IUserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,18 +25,12 @@ public class TodoController {
     IToDoServices service;
 
     @Autowired
-    ITodoRespository repository;
+    ITodoRepository repository;
 
-    @GetMapping("/")
-    public String getTodoAdd(Model model) {
+    @Autowired
+    IUserRepository userRepository;
 
-        model.addAttribute("todo_key", new TodoDto());
-
-        model.addAttribute("todo_list", service.findAllToDo());
-
-        return "index";
-    }
-
+    //yeni task ekleme
     @PostMapping("/save")
     public String postTodoAdd(@Valid @ModelAttribute("todo_key") TodoDto todoDto, BindingResult bindingResult) {
 
@@ -50,6 +44,7 @@ public class TodoController {
 
     }
 
+    //id'ye göre task silme
     @GetMapping("/delete/do/{id}")
     public String deleteToDo(@PathVariable(name = "id") Long id) {
 
@@ -57,6 +52,7 @@ public class TodoController {
         return "redirect:/";
     }
 
+    //id'ye göre task update işlemi
     @PostMapping("/update/do/{id}")
     public String updateToDo(@PathVariable(name = "id") Long id, TodoDto todoDto) {
 
@@ -65,6 +61,7 @@ public class TodoController {
 
     }
 
+    //delete all task
     @GetMapping("delete/do/all")
     public String deleteAllToDo() {
         service.deleteAllToDo();
@@ -72,12 +69,14 @@ public class TodoController {
 
     }
 
+    //done task
     @GetMapping("/done/{id}")
     public String done(@PathVariable(name = "id") Long id) {
         service.selectDone(id);
         return "redirect:/";
     }
 
+    //all done silme
     @GetMapping("/done/delete/all")
     public String doneDeleteAll() {
         service.deleteAllDoneToDo();

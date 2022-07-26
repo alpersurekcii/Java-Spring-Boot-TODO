@@ -22,7 +22,7 @@ public class UserLoginController {
         } else {
             model.addAttribute("login_key", "Lütfen Bilgileri Giriniz");
         }
-        return "login";
+        return "userlogin";
     }
 
 
@@ -36,6 +36,6 @@ public class UserLoginController {
         } else
             model.addAttribute("logout_key", "Çıkış Başarısız");
 
-        return "logout";
+        return "redirect:/login";
     }
 }

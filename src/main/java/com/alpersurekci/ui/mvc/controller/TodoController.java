@@ -40,7 +40,7 @@ public class TodoController {
         }
 
         service.saveToDo(todoDto);
-        return "redirect:/";
+        return "redirect:/list";
 
     }
 
@@ -49,7 +49,7 @@ public class TodoController {
     public String deleteToDo(@PathVariable(name = "id") Long id) {
 
         service.deleteToDo(id);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     //id'ye göre task update işlemi
@@ -57,7 +57,7 @@ public class TodoController {
     public String updateToDo(@PathVariable(name = "id") Long id, TodoDto todoDto) {
 
         service.updateToDo(id, todoDto);
-        return "redirect:/";
+        return "redirect:/list";
 
     }
 
@@ -65,7 +65,7 @@ public class TodoController {
     @GetMapping("delete/do/all")
     public String deleteAllToDo() {
         service.deleteAllToDo();
-        return "redirect:/";
+        return "redirect:/list";
 
     }
 
@@ -73,14 +73,14 @@ public class TodoController {
     @GetMapping("/done/{id}")
     public String done(@PathVariable(name = "id") Long id) {
         service.selectDone(id);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     //all done silme
     @GetMapping("/done/delete/all")
     public String doneDeleteAll() {
         service.deleteAllDoneToDo();
-        return "redirect:/";
+        return "redirect:/list";
     }
 
 

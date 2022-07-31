@@ -40,6 +40,8 @@ public class ToDoServiceImpl implements IToDoServices {
     ModelMapper modelMapper;
 
 
+
+
     @Override
     public TodoDto ToDoentityToDto(TodoEntity todoEntity) {
         TodoDto todoDto = modelMapper.map(todoEntity, TodoDto.class);
@@ -55,14 +57,18 @@ public class ToDoServiceImpl implements IToDoServices {
     @Override
     public List<TodoEntity> findAllToDo() {
 
-        List<TodoEntity> list = todoRespository.findAll();
-
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        UserEntity userEntity = userRepository.findAllByUserEmailEquals(username);
+       Long id =  userEntity.getUserId();
+        List<TodoEntity> list = todoRespository.findAllByUserEntity(id);
         return list;
     }
 
     //task ekleme
     @Override
     public void saveToDo(TodoDto todoDto ) {
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails)principal).getUsername();
         UserEntity userEntity = userRepository.findAllByUserEmailEquals(username);

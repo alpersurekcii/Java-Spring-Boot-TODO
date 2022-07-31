@@ -48,14 +48,14 @@ public class SecurityData extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login","/register","/homepage" )
+                .antMatchers("/login","/register","/homepage","/" )
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/list")
                 .permitAll()
                 .and()
                 .logout()

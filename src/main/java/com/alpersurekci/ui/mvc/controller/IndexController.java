@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @Autowired
     IToDoServices service;
-
     @GetMapping("/")
+    public String getHomePage(){
+        return "index";
+    }
+
+
+    @GetMapping("/list")
     public String getTodoAdd(Model model) {
 
         model.addAttribute("todo_key", new TodoDto());
@@ -23,6 +28,6 @@ public class IndexController {
 
         model.addAttribute("user_login", new UserDto());
 
-        return "index";
+        return "list";
     }
 }

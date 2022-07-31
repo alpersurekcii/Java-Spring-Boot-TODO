@@ -4,7 +4,7 @@ import com.alpersurekci.business.dto.TodoDto;
 import com.alpersurekci.business.dto.UserDto;
 import com.alpersurekci.business.services.IToDoServices;
 import com.alpersurekci.data.entity.TodoEntity;
-import com.alpersurekci.exception.UserAlreadyExistException;
+
 import com.alpersurekci.ui.mvc.rest.IToDoRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
